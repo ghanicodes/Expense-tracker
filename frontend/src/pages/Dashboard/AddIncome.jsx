@@ -47,7 +47,9 @@ const AddIncome = ({ onSuccess }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/income/addIncome",
+      const response = await fetch(
+        // "http://localhost:8000/api/v1/income/addIncome",
+         `${import.meta.env.VITE_BACKEND_URL}/api/v1/income/addIncome`,
         {
           method: "POST",
           credentials: "include",

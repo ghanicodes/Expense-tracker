@@ -33,7 +33,10 @@ const AddExpenseForm = ({ onSuccess }) => {
   };
 
   try {
-    const response = await fetch("http://localhost:8000/api/v1/expenses/add", {
+    const response = await fetch(
+      // "http://localhost:8000/api/v1/expenses/add",
+       `${import.meta.env.VITE_BACKEND_URL}/api/v1/expenses/add`,
+       {
       method: "POST",
       credentials: "include", 
       headers: {

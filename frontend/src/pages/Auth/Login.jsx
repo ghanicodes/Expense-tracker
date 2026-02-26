@@ -27,7 +27,10 @@ const Login = () => {
     setError("");
 
   try {
-    const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+    const response = await fetch(
+      // "http://localhost:8000/api/v1/auth/login", 
+       `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`,
+      {
       method: "POST",
       credentials: "include",
       headers: {

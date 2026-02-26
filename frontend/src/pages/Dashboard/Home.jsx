@@ -39,7 +39,10 @@ const ResponsiveDashboard = () => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/v1/auth/me", { method: "GET", credentials: "include" });
+      const response = await fetch(
+        // "http://localhost:8000/api/v1/auth/me",
+         `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/me`,
+         { method: "GET", credentials: "include" });
       if (!response.ok) throw new Error("Not authenticated");
       const data = await response.json(); 
       setUser(data); 
@@ -51,7 +54,10 @@ const ResponsiveDashboard = () => {
 
   const fetchExpenses = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/expenses/get", { credentials: "include" });
+      const res = await fetch(
+        // "http://localhost:8000/api/v1/expenses/get",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/expenses/get`,
+         { credentials: "include" });
       const data = await res.json();
       setExpenses(data);
     } catch (err) { console.log(err); }
@@ -59,7 +65,10 @@ const ResponsiveDashboard = () => {
 
   const deleteExpense = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/expenses/delete/${id}`, { method: "DELETE", credentials: "include" });
+      const res = await fetch(
+        // `http://localhost:8000/api/v1/expenses/delete/${id}`,
+         `${import.meta.env.VITE_BACKEND_URL}/api/v1/expenses/delete/${id}`,
+         { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error("Delete failed");
       setExpenses((prev) => prev.filter((item) => item._id !== id));
       alert("Expense Deleted");
@@ -68,7 +77,10 @@ const ResponsiveDashboard = () => {
 
   const updateExpense = async (updatedData) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/expenses/update/${updatedData._id}`, {
+      const res = await fetch(
+        // `http://localhost:8000/api/v1/expenses/update/${updatedData._id}`,
+                 `${import.meta.env.VITE_BACKEND_URL}/api/v1/expenses/update/${updatedData._id}`,
+         {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -84,14 +96,20 @@ const ResponsiveDashboard = () => {
 
   const handleLogout = async () => {
      try {
-      await fetch("http://localhost:8000/api/v1/auth/logout", { method: "POST", credentials: "include" });
+      await fetch(
+        // "http://localhost:8000/api/v1/auth/logout",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/logout`,
+         { method: "POST", credentials: "include" });
       navigate('/login');
      } catch (error) { console.log("Logout Error:", error); }
   }
 
   const fetchIncome = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/income/getIncome", { credentials: "include" });
+      const res = await fetch(
+        // "http://localhost:8000/api/v1/income/getIncome",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/income/getIncome`,
+         { credentials: "include" });
       const data = await res.json();
       setIncomes(data);
     } catch (err) { console.log(err); }
@@ -99,7 +117,10 @@ const ResponsiveDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/dashboard/stats", { credentials: "include" });
+      const res = await fetch(
+        // "http://localhost:8000/api/v1/dashboard/stats",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/dashboard/stats`,
+         { credentials: "include" });
       const data = await res.json();
       setStats(data);
     } catch (err) { console.log(err); }

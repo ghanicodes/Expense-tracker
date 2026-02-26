@@ -47,7 +47,8 @@ const SignUp = () => {
       }
 
       const response = await fetch(
-        "http://localhost:8000/api/v1/auth/register",
+        // "http://localhost:8000/api/v1/auth/register" || process.env.FRONT_BASE_URL,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/register`,
         {
           method: "POST",
           body: formData, 
