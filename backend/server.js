@@ -20,14 +20,21 @@ const app = express();
 //   })
 // );
 
-app.use(
-    cors({
-        origin: process.env.CLIENT_URL || "*",
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
-);
+
+
+const allowedOrigin = process.env.CLIENT_URL;
+
+const corsOptions = {
+  origin: allowedOrigin,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
+
 app.use(cookieParser());
 app.use(express.json());
 
