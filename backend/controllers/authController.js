@@ -132,9 +132,10 @@ exports.getUserInfo = async (req, res) => {
 
   exports.logoutUser = async (req, res) => {
   try {
-    res.cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0), 
+    res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
     });
 
     res.status(200).json({
